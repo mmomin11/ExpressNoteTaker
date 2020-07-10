@@ -55,4 +55,22 @@ app.post("/api/notes", function(req, res) {
 
 // delete a note
 
+app.delete("/api/notes/:id", function(req,res) {
+    try {
+        notesData = fs.readFileSync("./Develop/db/db.json", "utf8");
 
+        notesData = JSON.parse(notesData);
+        noteData = notesData.filter(function (note) {
+            return note.id != req.params.id;
+        });
+        notesdata = JSON.stringify(notesData);
+        fs.writeFile(".Develop/db/db.json", notesData, "utf8", function(err) {
+            if (err) throw err;
+        });
+
+        res.send(JSON.parse(notesData));
+    } catch (err) {
+        throw err;
+        console.log(err);
+    }
+});
