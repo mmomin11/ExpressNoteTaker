@@ -74,3 +74,21 @@ app.delete("/api/notes/:id", function(req,res) {
         console.log(err);
     }
 });
+
+// HTML GET request
+
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "Develop/public/notes.html"));
+});
+
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "Develop/public/index.html"))
+});
+
+app.get("api/notes", function(req, res) {
+    return res.sendFile(path.json(__dirname, "Develop/db/db.json"));
+});
+
+app.listen(PORT, function() {
+    console.log("Server is listening on " = PORT);
+})
