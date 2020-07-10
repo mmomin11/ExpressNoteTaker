@@ -15,6 +15,8 @@ const PORT = process.env. PORT || 5000;
 let notes = [];
 
 // api call response for all the ntoes, and sends results to browser as an array of objects. 
+// reads the data from json file
+
 app.get("/api/notes", function(err, res) {
     try {
         notesData = fs.readFileSync("Develop/db/db.json", "utf8");
@@ -26,8 +28,31 @@ app.get("/api/notes", function(err, res) {
     res.json(notesData);
 });
 
-// reads the data from json file
+
 // writes the new note to json file
+
+app.post("/api/notes", function(req, res) {
+    try{
+        notesData = fs.readFileSync("./Develop/db/db.json", "utf8");
+        console.log(notesData);
+
+        notesData = JSON.parse(motesData);
+        req.body.id = notesData.length;
+
+        notesData.push(req.body);
+        notesData = JSON.stringify(notesData);
+
+        fs.writeFile("./Develop/db/db.json", notesData, "utf8", function(err) {
+            // error handling
+            if (err) throw err;
+          });
+          res.json(JSON.parse(notesData));
+    } catch (err) {
+        throw err;
+        console.log(err);
+    }
+});
+
 // delete a note
 
 
