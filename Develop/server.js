@@ -12,7 +12,11 @@ const app = express();
 const PORT = process.env. PORT || 5000;
 
 // create a global array for the notes
-let notes = [];
+let notesData = [];
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "Develop/public")));
 
 // api call response for all the ntoes, and sends results to browser as an array of objects. 
 // reads the data from json file
