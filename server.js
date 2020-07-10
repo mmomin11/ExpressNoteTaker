@@ -9,7 +9,7 @@ const fs = require("fs");
 // create app const which would be the express server
 const app = express();
 // initial ports
-const PORT = process.env. PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 // create a global array for the notes
 let notesData = [];
