@@ -94,5 +94,5 @@ app.get("api/notes", function(req, res) {
 });
 
 app.listen(PORT, function() {
-    console.log("Server is listening on " = PORT);
+    console.log("Server is listening on " + PORT);
 });
